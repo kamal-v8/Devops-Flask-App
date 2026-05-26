@@ -3,176 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prashant Gohil | Resume</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Kamal V | Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0a0a0a;
-            --card-bg: rgba(255, 255, 255, 0.02);
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --accent: #ffffff;
-            --border: rgba(255, 255, 255, 0.08);
+            --bg: #fafafa;
+            --card-bg: #ffffff;
+            --text-main: #1a1a1a;
+            --text-muted: #6b6b6b;
+            --text-light: #999999;
+            --border: #e8e8e8;
+            --accent: #1a1a1a;
+            --serif: 'Cormorant Garamond', Georgia, serif;
+            --sans: 'Inter', -apple-system, sans-serif;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
+            background-color: var(--bg);
             color: var(--text-main);
-            line-height: 1.6;
+            font-family: var(--sans);
+            line-height: 1.7;
             display: flex;
             justify-content: center;
-            padding: 60px 20px;
+            padding: 80px 24px;
+            -webkit-font-smoothing: antialiased;
         }
 
         .resume-container {
-            max-width: 1000px;
+            max-width: 960px;
             width: 100%;
             display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 60px;
+            grid-template-columns: 260px 1fr;
+            gap: 70px;
         }
 
-        /* Sidebar */
+        /* ── Sidebar ── */
         .sidebar {
             position: sticky;
-            top: 60px;
+            top: 80px;
             height: fit-content;
+        }
+
+        .profile-img-wrapper {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 28px;
+            border: 1px solid var(--border);
         }
 
         .profile-img {
             width: 100%;
-            aspect-ratio: 1/1;
-            border-radius: 8px;
+            height: 100%;
             object-fit: cover;
-            margin-bottom: 24px;
-            border: 1px solid var(--border);
-            filter: grayscale(100%);
-            transition: filter 0.5s ease;
+            object-position: center top;
+            transition: transform 0.6s ease;
         }
 
-        .profile-img:hover {
-            filter: grayscale(0%);
+        .profile-img-wrapper:hover .profile-img {
+            transform: scale(1.03);
         }
 
         h1 {
-            font-size: 2.2rem;
-            font-weight: 500;
-            margin-bottom: 8px;
-            letter-spacing: -1px;
+            font-family: var(--serif);
+            font-size: 2.4rem;
+            font-weight: 400;
+            letter-spacing: 1px;
             color: var(--accent);
+            margin-bottom: 6px;
         }
 
         .title {
             color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 30px;
+            font-size: 0.85rem;
             font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         .contact-links a {
-            display: inline-block;
-            color: var(--text-main);
+            color: var(--text-muted);
             text-decoration: none;
-            margin-bottom: 12px;
-            font-size: 0.9rem;
-            padding-bottom: 2px;
-            border-bottom: 1px solid var(--border);
-            transition: border-color 0.3s;
-            margin-right: 15px;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
         }
 
         .contact-links a:hover {
-            border-color: var(--accent);
+            color: var(--accent);
         }
 
-        /* Main Content */
+        .contact-links a::before {
+            content: '→ ';
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .contact-links a:hover::before {
+            opacity: 1;
+        }
+
+        /* ── Main Content ── */
         .main-content {
             display: flex;
             flex-direction: column;
-            gap: 50px;
+            gap: 55px;
+        }
+
+        section {
+            padding-bottom: 55px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
         }
 
         section h2 {
-            font-size: 0.85rem;
+            font-family: var(--serif);
+            font-size: 1rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
+            color: var(--text-light);
+            margin-bottom: 28px;
+            font-weight: 400;
+        }
+
+        .about-text {
             color: var(--text-muted);
-            margin-bottom: 25px;
-            font-weight: 500;
+            font-size: 1rem;
+            line-height: 1.9;
+            font-weight: 300;
+            max-width: 560px;
         }
 
         .item {
-            margin-bottom: 30px;
+            margin-bottom: 28px;
+        }
+
+        .item:last-child {
+            margin-bottom: 0;
         }
 
         .item h3 {
-            font-size: 1.2rem;
+            font-family: var(--serif);
+            font-size: 1.3rem;
             font-weight: 400;
             color: var(--text-main);
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            letter-spacing: 0.3px;
         }
 
         .item p {
             color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.7;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            font-weight: 300;
         }
 
+        /* ── Skills ── */
         .skills-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
         }
 
         .skill-tag {
-            background: var(--card-bg);
+            background: transparent;
             border: 1px solid var(--border);
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-size: 0.85rem;
+            padding: 8px 18px;
+            border-radius: 3px;
+            font-size: 0.8rem;
             color: var(--text-muted);
-            transition: color 0.3s, border-color 0.3s;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 400;
+            transition: all 0.3s ease;
         }
 
         .skill-tag:hover {
             color: var(--accent);
-            border-color: rgba(255,255,255,0.3);
+            border-color: var(--accent);
         }
 
-        /* Guestbook / 2-Tier feature */
+        /* ── Guestbook ── */
         .guestbook {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 30px;
+            border-radius: 6px;
+            padding: 32px;
         }
 
         .guestbook h3 {
-            font-size: 1.1rem;
+            font-family: var(--serif);
+            font-size: 1.2rem;
             font-weight: 400;
             margin-bottom: 20px;
             color: var(--text-main);
         }
 
         .messages-container {
-            max-height: 250px;
+            max-height: 220px;
             overflow-y: auto;
-            margin-bottom: 25px;
-            padding-right: 15px;
+            margin-bottom: 24px;
         }
 
         .message-bubble {
             padding: 14px 0;
             border-bottom: 1px solid var(--border);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--text-muted);
+            font-weight: 300;
         }
 
         .message-bubble:last-child {
@@ -187,42 +244,54 @@
         input[type="text"] {
             flex: 1;
             padding: 14px 18px;
-            background: transparent;
+            background: var(--bg);
             border: 1px solid var(--border);
             color: var(--text-main);
             border-radius: 4px;
             outline: none;
-            font-size: 0.95rem;
+            font-family: var(--sans);
+            font-size: 0.9rem;
+            font-weight: 300;
             transition: border-color 0.3s;
         }
 
         input[type="text"]:focus {
-            border-color: rgba(255,255,255,0.5);
+            border-color: var(--accent);
+        }
+
+        input[type="text"]::placeholder {
+            color: var(--text-light);
+            font-weight: 300;
         }
 
         button {
-            padding: 14px 28px;
-            background: var(--text-main);
-            color: var(--bg-color);
+            padding: 14px 30px;
+            background: var(--accent);
+            color: var(--bg);
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-weight: 500;
-            font-size: 0.95rem;
+            font-family: var(--sans);
+            font-weight: 400;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
             transition: opacity 0.3s;
         }
 
         button:hover {
-            opacity: 0.8;
+            opacity: 0.7;
         }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 4px; }
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar { width: 3px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.4); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-light); }
 
+        /* ── Responsive ── */
         @media (max-width: 800px) {
+            body { padding: 40px 20px; }
             .resume-container {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -231,8 +300,8 @@
                 position: relative;
                 top: 0;
             }
-            .profile-img {
-                width: 200px;
+            .profile-img-wrapper {
+                width: 180px;
             }
         }
     </style>
@@ -240,12 +309,15 @@
 <body>
 
     <div class="resume-container">
+
         <!-- Sidebar -->
         <div class="sidebar">
-            <img src="1.png" alt="Prashant Gohil" class="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=Prashant+Gohil&background=222&color=fff&size=400'">
-            <h1>Prashant Gohil</h1>
+            <div class="profile-img-wrapper">
+                <img src="image.jpg" alt="Kamal V" class="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=Kamal+V&background=f0f0f0&color=1a1a1a&size=400'">
+            </div>
+            <h1>Kamal V</h1>
             <p class="title">Cloud & DevOps Engineer</p>
-            
+
             <div class="contact-links">
                 <a href="https://github.com/kamal-v8" target="_blank">GitHub</a>
             </div>
@@ -253,11 +325,11 @@
 
         <!-- Main Content -->
         <div class="main-content">
-            
+
             <section>
                 <h2>About</h2>
-                <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.8;">
-                    I am an aspiring Cloud & DevOps Engineer with a passion for building scalable, reliable, and automated infrastructure. I specialize in cloud-native platforms, CI/CD pipelines, and declarative infrastructure as code.
+                <p class="about-text">
+                    Aspiring Cloud & DevOps Engineer with a passion for building scalable, reliable, and automated infrastructure. I specialize in cloud-native platforms, CI/CD pipelines, and declarative infrastructure as code.
                 </p>
             </section>
 
@@ -270,25 +342,25 @@
 
             <section>
                 <h2>Projects</h2>
-                
+
                 <div class="item">
-                    <h3>Pulse (GitOps Platform)</h3>
-                    <p>Designed and deployed a modern GitOps-driven platform enabling automated, reliable, and declarative infrastructure updates.</p>
+                    <h3>Pulse</h3>
+                    <p>A GitOps-driven platform enabling automated, reliable, and declarative infrastructure updates through version-controlled workflows.</p>
                 </div>
 
                 <div class="item">
                     <h3>Cloud-Native E-commerce Platform</h3>
-                    <p>Built a scalable, highly-available e-commerce platform leveraging modern cloud-native architecture principles and microservices.</p>
+                    <p>A scalable, highly-available e-commerce platform leveraging modern cloud-native architecture principles and microservices.</p>
                 </div>
 
                 <div class="item">
                     <h3>AWS 2-Tier Architecture</h3>
-                    <p>Deployed a containerized 2-tier Flask & MySQL application on AWS EC2 using Docker Compose, fully automated via a Jenkins CI/CD pipeline. (You are looking at it!)</p>
+                    <p>A containerized Flask & MySQL application on AWS EC2 using Docker Compose, fully automated via a Jenkins CI/CD pipeline.</p>
                 </div>
             </section>
 
             <section>
-                <h2>Skills & Technologies</h2>
+                <h2>Skills</h2>
                 <div class="skills-list">
                     <span class="skill-tag">Networking</span>
                     <span class="skill-tag">AWS</span>
@@ -296,16 +368,16 @@
                     <span class="skill-tag">Terraform</span>
                     <span class="skill-tag">Jenkins</span>
                     <span class="skill-tag">GitOps</span>
-                    <span class="skill-tag">Python (Flask)</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Flask</span>
                     <span class="skill-tag">MySQL</span>
                 </div>
             </section>
 
-            <!-- 2-Tier Feature -->
             <section>
-                <h2>Database Demo</h2>
+                <h2>Guestbook</h2>
                 <div class="guestbook">
-                    <h3>Live Guestbook</h3>
+                    <h3>Leave a message</h3>
                     <div class="messages-container" id="messages-list">
                         {% for message in messages %}
                             <div class="message-bubble">{{ message[0] }}</div>
@@ -313,7 +385,7 @@
                     </div>
 
                     <form id="messageForm">
-                        <input type="text" name="new_message" placeholder="Leave a comment to test the MySQL database..." required>
+                        <input type="text" name="new_message" placeholder="Write something..." required>
                         <button type="submit">Send</button>
                     </form>
                 </div>
@@ -325,7 +397,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Scroll to bottom of messages on load
             const msgContainer = document.getElementById('messages-list');
             msgContainer.scrollTop = msgContainer.scrollHeight;
 
@@ -349,7 +420,6 @@
                     },
                     error: function(xhr, status, error) {
                         console.error("AJAX Error:", status, error);
-                        alert("Failed to connect to the database container.");
                     }
                 });
             });
