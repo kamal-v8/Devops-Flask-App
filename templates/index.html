@@ -1,213 +1,340 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prashant | Flask App 🚀</title>
+    <title>Prashant Gohil | Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        :root {
+            --bg-color: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --accent: #ffffff;
+            --border: rgba(255, 255, 255, 0.08);
+        }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background: linear-gradient(160deg, #0C0D16, #1A1C2B);
-            color: #ffffff;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            padding: 60px 20px;
         }
 
-        /* Flex container for profile + content */
-        .container {
-            display: flex;
-            flex-direction: row;
-            max-width: 1050px;
+        .resume-container {
+            max-width: 1000px;
             width: 100%;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 60px;
         }
 
-        /* Left side: profile photo */
-        .profile-photo {
-            flex: 0 0 200px;
-            margin-right: 30px;
+        /* Sidebar */
+        .sidebar {
+            position: sticky;
+            top: 60px;
+            height: fit-content;
         }
 
-        .profile-photo img {
+        .profile-img {
             width: 100%;
-            border-radius: 50%;
-            border: 3px solid #5599FF;
-            box-shadow: 0 4px 15px rgba(85, 153, 255, 0.5);
-        }
-
-        /* Right side: content */
-        .content {
-            flex: 1;
-        }
-
-        .header h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #5599FF;
-            margin-bottom: 8px;
-        }
-
-        .header p {
-            font-size: 1rem;
-            color: #ccc;
-            margin-bottom: 15px;
-        }
-
-        .about {
-            margin-bottom: 20px;
-            padding: 10px 15px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .about h2 {
-            font-size: 1.3rem;
-            color: #5599FF;
-            margin-bottom: 8px;
-        }
-
-        .about p {
-            font-size: 0.95rem;
-            color: #ddd;
-            line-height: 1.5;
-        }
-
-        .messages {
-            margin-bottom: 15px;
-            padding: 12px;
-            background: rgba(85, 153, 255, 0.08);
-            border: 1px solid rgba(85, 153, 255, 0.2);
-            border-radius: 12px;
-            max-height: 200px;
-            overflow-y: auto;
-            text-align: left;
-        }
-
-        .messages p {
-            padding: 8px;
-            background: rgba(255, 255, 255, 0.07);
+            aspect-ratio: 1/1;
             border-radius: 8px;
-            margin-bottom: 6px;
+            object-fit: cover;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+            filter: grayscale(100%);
+            transition: filter 0.5s ease;
+        }
+
+        .profile-img:hover {
+            filter: grayscale(0%);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+            color: var(--accent);
+        }
+
+        .title {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .contact-links a {
+            display: inline-block;
+            color: var(--text-main);
+            text-decoration: none;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            padding-bottom: 2px;
+            border-bottom: 1px solid var(--border);
+            transition: border-color 0.3s;
+            margin-right: 15px;
+        }
+
+        .contact-links a:hover {
+            border-color: var(--accent);
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+
+        section h2 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-weight: 500;
+        }
+
+        .item {
+            margin-bottom: 30px;
+        }
+
+        .item h3 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .item p {
+            color: var(--text-muted);
             font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-tag {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            transition: color 0.3s, border-color 0.3s;
+        }
+
+        .skill-tag:hover {
+            color: var(--accent);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        /* Guestbook / 2-Tier feature */
+        .guestbook {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 30px;
+        }
+
+        .guestbook h3 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+
+        .messages-container {
+            max-height: 250px;
+            overflow-y: auto;
+            margin-bottom: 25px;
+            padding-right: 15px;
+        }
+
+        .message-bubble {
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .message-bubble:last-child {
+            border-bottom: none;
+        }
+
+        form {
+            display: flex;
+            gap: 12px;
         }
 
         input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid rgba(85, 153, 255, 0.3);
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            text-align: center;
+            flex: 1;
+            padding: 14px 18px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            border-radius: 4px;
+            outline: none;
+            font-size: 0.95rem;
+            transition: border-color 0.3s;
         }
 
         input[type="text"]:focus {
-            border-color: #5599FF;
-            box-shadow: 0 0 12px rgba(85, 153, 255, 0.6);
-            outline: none;
+            border-color: rgba(255,255,255,0.5);
         }
 
-        input[type="submit"] {
-            width: 100%;
-            padding: 12px;
-            background: #5599FF;
-            color: #ffffff;
+        button {
+            padding: 14px 28px;
+            background: var(--text-main);
+            color: var(--bg-color);
             border: none;
-            border-radius: 8px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: opacity 0.3s;
         }
 
-        input[type="submit"]:hover {
-            background: #417ad6;
-            box-shadow: 0 0 15px rgba(85, 153, 255, 0.6);
-            transform: translateY(-2px);
+        button:hover {
+            opacity: 0.8;
         }
 
-        /* Responsive */
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.4); }
+
         @media (max-width: 800px) {
-            .container {
-                flex-direction: column;
-                align-items: center;
+            .resume-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
-
-            .profile-photo {
-                margin-right: 0;
-                margin-bottom: 20px;
-                flex: 0 0 auto;
+            .sidebar {
+                position: relative;
+                top: 0;
+            }
+            .profile-img {
+                width: 200px;
             }
         }
     </style>
 </head>
-
 <body>
-    <div class="container">
-        <!-- Profile photo -->
-        <div class="profile-photo">
-            <img src="1.png" alt="Prashant Photo">
+
+    <div class="resume-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <img src="1.png" alt="Prashant Gohil" class="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=Prashant+Gohil&background=222&color=fff&size=400'">
+            <h1>Prashant Gohil</h1>
+            <p class="title">Cloud & DevOps Engineer</p>
+            
+            <div class="contact-links">
+                <a href="https://github.com/kamal-v8" target="_blank">GitHub</a>
+            </div>
         </div>
 
-        <!-- Content -->
-        <div class="content">
-            <div class="header">
-                <h1>Prashant Gohil | DevOps Enthusiast</h1>
-                <p>Student | Aspiring Cloud & DevOps Engineer</p>
-            </div>
-
-            <div class="about">
-                <h2>About Me</h2>
-                <p>Hi, I'm <b>Prashant</b> 👋, a student and aspiring Cloud & DevOps engineer.</p>
-                <p style="margin-top:10px;">
-                    <b>Project:</b> I have deployed a 2-tier Flask application (Flask + MySQL) on AWS EC2 using Docker.  
-                    I used Docker Compose to manage both containers with volumes and a custom network.  
-                    The source code is hosted on GitHub, and Jenkins is integrated to set up a CI/CD pipeline for automated deployment.
+        <!-- Main Content -->
+        <div class="main-content">
+            
+            <section>
+                <h2>About</h2>
+                <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.8;">
+                    I am an aspiring Cloud & DevOps Engineer with a passion for building scalable, reliable, and automated infrastructure. I specialize in cloud-native platforms, CI/CD pipelines, and declarative infrastructure as code.
                 </p>
-            </div>
+            </section>
 
-            <div class="messages">
-                {% for message in messages %}
-                    <p>{{ message[0] }}</p>
-                {% endfor %}
-            </div>
+            <section>
+                <h2>Education</h2>
+                <div class="item">
+                    <h3>Christ Academy for Advance Studies</h3>
+                </div>
+            </section>
 
-            <form id="messageForm">
-                <input type="text" name="new_message" placeholder="Type your message..." required>
-                <input type="submit" value="Send">
-            </form>
+            <section>
+                <h2>Projects</h2>
+                
+                <div class="item">
+                    <h3>Pulse (GitOps Platform)</h3>
+                    <p>Designed and deployed a modern GitOps-driven platform enabling automated, reliable, and declarative infrastructure updates.</p>
+                </div>
+
+                <div class="item">
+                    <h3>Cloud-Native E-commerce Platform</h3>
+                    <p>Built a scalable, highly-available e-commerce platform leveraging modern cloud-native architecture principles and microservices.</p>
+                </div>
+
+                <div class="item">
+                    <h3>AWS 2-Tier Architecture</h3>
+                    <p>Deployed a containerized 2-tier Flask & MySQL application on AWS EC2 using Docker Compose, fully automated via a Jenkins CI/CD pipeline. (You are looking at it!)</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>Skills & Technologies</h2>
+                <div class="skills-list">
+                    <span class="skill-tag">Networking</span>
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Terraform</span>
+                    <span class="skill-tag">Jenkins</span>
+                    <span class="skill-tag">GitOps</span>
+                    <span class="skill-tag">Python (Flask)</span>
+                    <span class="skill-tag">MySQL</span>
+                </div>
+            </section>
+
+            <!-- 2-Tier Feature -->
+            <section>
+                <h2>Database Demo</h2>
+                <div class="guestbook">
+                    <h3>Live Guestbook</h3>
+                    <div class="messages-container" id="messages-list">
+                        {% for message in messages %}
+                            <div class="message-bubble">{{ message[0] }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <form id="messageForm">
+                        <input type="text" name="new_message" placeholder="Leave a comment to test the MySQL database..." required>
+                        <button type="submit">Send</button>
+                    </form>
+                </div>
+            </section>
+
         </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
+            // Scroll to bottom of messages on load
+            const msgContainer = document.getElementById('messages-list');
+            msgContainer.scrollTop = msgContainer.scrollHeight;
+
             $("#messageForm").on("submit", function(event) {
                 event.preventDefault();
                 let messageInput = $("input[name='new_message']");
                 let message = messageInput.val().trim();
 
-                if (message === "") {
-                    alert("Message cannot be empty!");
-                    return;
-                }
+                if (message === "") return;
 
                 $.ajax({
                     url: "/submit",
@@ -215,12 +342,14 @@
                     data: { new_message: message },
                     success: function(response) {
                         if (response && response.message) {
-                            $(".messages").append("<p>" + response.message + "</p>");
+                            $("#messages-list").append('<div class="message-bubble">' + response.message + '</div>');
                             messageInput.val("");
+                            msgContainer.scrollTop = msgContainer.scrollHeight;
                         }
                     },
                     error: function(xhr, status, error) {
                         console.error("AJAX Error:", status, error);
+                        alert("Failed to connect to the database container.");
                     }
                 });
             });
